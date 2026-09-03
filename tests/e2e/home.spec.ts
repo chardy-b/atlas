@@ -1,36 +1,56 @@
 import { expect, test } from "@playwright/test"
 
-test("homepage provides an accessible theme control and a stable visual baseline", async ({
-  page,
-}) => {
-  await page.goto("/")
-
-  await expect(
-    page.getByRole("heading", { name: /practical starting point/i }),
-  ).toBeVisible()
-  await expect(
-    page.getByRole("button", { name: "Change color theme" }),
-  ).toBeVisible()
-
-  await page.getByRole("button", { name: "Change color theme" }).click()
-  await page.getByRole("menuitemradio", { name: "Light" }).click()
-  await expect(page.locator("html")).not.toHaveClass(/dark/)
-  await page.keyboard.press("Escape")
-  await expect(page.getByRole("menu")).not.toBeVisible()
-
-  await page.emulateMedia({ colorScheme: "light" })
-  await expect(page).toHaveScreenshot("home.png", {
-    animations: "disabled",
-    fullPage: true,
+test.describe("mood board", () => {
+  test("desktop filters, opens and closes source dialog without featured-site requests", async ({
+    page,
+  }) => {
+    const requests: string[] = []
+    page.on("request", (request) => requests.push(request.url()))
+    await page.emulateMedia({ reducedMotion: "reduce" })
+    await page.goto("/")
+    await expect(
+      page.getByRole("heading", { name: /wall of moving ideas/i }),
+    ).toBeVisible()
+    await expect(page.getByText("12 shown")).toBeVisible()
+    await page.getByRole("button", { name: "Shaders" }).click()
+    await expect(page.getByText(/shown$/)).toHaveText("5 shown")
+    await page.getByRole("button", { name: /No Mercy Michel/i }).click()
+    await expect(page.getByRole("dialog")).toBeVisible()
+    const link = page.getByRole("link", { name: /original source/i })
+    await expect(link).toHaveAttribute("target", "_blank")
+    await expect(link).toHaveAttribute("rel", /noopener/)
+    await page.keyboard.press("Escape")
+    await expect(page.getByRole("dialog")).not.toBeVisible()
+    await page.getByRole("button", { name: "All" }).click()
+    await expect(page.getByText("12 shown")).toBeVisible()
+    const featuredRequests = requests.filter((url) =>
+      /(?:^|\/\/)(?:www\.)?(?:snookersim\.com|bruno-simon\.com|threejs\.org)(?:\/|$)/.test(
+        url,
+      ),
+    )
+    expect(featuredRequests).toEqual([])
+    await expect(page).toHaveScreenshot("home.png", {
+      animations: "disabled",
+      fullPage: true,
+    })
   })
-})
 
-test("health endpoint is healthy and exposes only its status", async ({
-  request,
-}) => {
-  const response = await request.get("/api/health")
-
-  expect(response.status()).toBe(200)
-  await expect(response).toBeOK()
-  await expect(response.json()).resolves.toEqual({ status: "ok" })
+  test("mobile renders the board and health is healthy", async ({
+    page,
+    request,
+  }) => {
+    await page.goto("/")
+    await expect(page.locator("#board")).toBeVisible()
+    await expect(page.getByRole("button", { name: "All" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    )
+    const response = await request.get("/api/health")
+    expect(response.status()).toBe(200)
+    await expect(response.json()).resolves.toEqual({ status: "ok" })
+    await page.screenshot({
+      path: "test-results/mood-board-mobile.png",
+      fullPage: true,
+    })
+  })
 })

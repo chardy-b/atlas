@@ -21,7 +21,10 @@ const themeOptions = [
 
 export function ThemeToggle() {
   const mounted = React.useSyncExternalStore(
-    () => () => undefined,
+    (onStoreChange) => {
+      const id = window.setTimeout(onStoreChange, 0)
+      return () => window.clearTimeout(id)
+    },
     () => true,
     () => false,
   )

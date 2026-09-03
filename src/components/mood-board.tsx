@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image"
 import { useState } from "react"
 import { projects, categories, type ProjectCategory } from "@/data/projects"
 import {
@@ -48,7 +49,13 @@ export function MoodBoard() {
               className={`project-card ${p.span}`}
               onClick={() => setSelected(p)}
             >
-              <img src={p.image} alt={p.alt} />
+              <Image
+                src={p.image}
+                alt={p.alt}
+                width={640}
+                height={360}
+                sizes="(max-width: 700px) 100vw, 50vw"
+              />
               <span className="project-index">
                 {String(i + 1).padStart(2, "0")}
               </span>
