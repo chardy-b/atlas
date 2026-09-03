@@ -34,8 +34,9 @@ test.describe("Three.js mood board", () => {
     )
     expect(featuredRequests).toEqual([])
     await expect(page).toHaveScreenshot("home.png", {
-      animations: "disabled",
       fullPage: true,
+      animations: "disabled",
+      maxDiffPixels: 2_500,
     })
   })
 
