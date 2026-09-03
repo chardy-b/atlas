@@ -1,0 +1,47 @@
+name: Security scanning
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 4 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    name: Secret detection
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # TruffleHog OSS scans the full checked-out history and does not require
+      # an organization-specific commercial license.
+      - name: Scan for exposed secrets
+        uses: trufflesecurity/trufflehog@main
+
+  codeql:
+    name: CodeQL
+    # Public repositories support CodeQL. For eligible private repositories,
+    # set the repository variable ENABLE_CODEQL=true.
+    if: github.event.repository.visibility == 'public' || vars.ENABLE_CODEQL == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript
+          build-mode: none
+
+      - uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:javascript-typescript"
