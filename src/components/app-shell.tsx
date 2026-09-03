@@ -30,7 +30,7 @@ export function AppShell({
               <li>
                 <a
                   className="inline-flex rounded-md px-2.5 py-1.5 text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  href="#examples"
+                  href="#board"
                 >
                   Examples
                 </a>

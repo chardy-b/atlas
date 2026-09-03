@@ -33,6 +33,9 @@ export default defineConfig({
         "src/components/empty-state.tsx",
         "src/components/error-state.tsx",
         "src/components/theme-toggle.tsx",
+        "src/components/mood-board.tsx",
+        "src/components/ambient-scene.tsx",
+        "src/data/projects.ts",
         "src/app/api/health/route.ts",
       ],
       exclude: [
