@@ -1,6 +1,12 @@
 import { expect, test } from "@playwright/test"
 
-test.describe("mood board", () => {
+import { projects } from "../../src/data/projects"
+
+const featuredHosts = new Set(
+  projects.map((project) => new URL(project.source).hostname),
+)
+
+test.describe("Three.js mood board", () => {
   test("desktop filters, opens and closes source dialog without featured-site requests", async ({
     page,
   }) => {
@@ -24,9 +30,7 @@ test.describe("mood board", () => {
     await page.getByRole("button", { name: "All" }).click()
     await expect(page.getByText("12 shown")).toBeVisible()
     const featuredRequests = requests.filter((url) =>
-      /(?:^|\/\/)(?:www\.)?(?:snookersim\.com|bruno-simon\.com|threejs\.org)(?:\/|$)/.test(
-        url,
-      ),
+      featuredHosts.has(new URL(url).hostname),
     )
     expect(featuredRequests).toEqual([])
     await expect(page).toHaveScreenshot("home.png", {
