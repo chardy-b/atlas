@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>3D Portal</title>
-  <script type="module" crossorigin src="/mirror/assets/index-C7npKrEU.js"></script>
-  <link rel="stylesheet" crossorigin href="/mirror/assets/index-CC2Mlrqm.css">
+  <script type="module" crossorigin src="/mirror/assets/index-mjMi9b03.js"></script>
+  <link rel="stylesheet" crossorigin href="/mirror/assets/index-DqoQ7vAP.css">
 </head>
 <body>
   <div id="app">
@@ -15,6 +15,83 @@
         <h1>3D Portal</h1>
         <p class="subtitle">Head-tracked motion parallax</p>
         <button id="startBtn" class="primary-btn">Start Portal</button>
+        <button id="settingsBtn" class="secondary-btn">Camera &amp; Screen Setup</button>
+      </div>
+    </div>
+
+    <!-- Calibration setup modal -->
+    <div id="settingsModal" class="modal-overlay hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <span class="modal-title">Camera &amp; Screen Setup</span>
+          <button id="closeSettings" class="modal-close">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="cfg-section">
+            <label class="cfg-label">Preset</label>
+            <select id="presetSelect">
+              <option>Pixel 11 Pro (front)</option>
+              <option>Generic Phone (front)</option>
+              <option>Laptop Webcam</option>
+              <option>External Webcam</option>
+              <option>Custom</option>
+            </select>
+          </div>
+
+          <div class="cfg-section">
+            <div class="cfg-section-title">Camera</div>
+            <div class="cfg-row">
+              <label>HFOV (°)</label>
+              <input type="number" id="hfov" min="30" max="130" step="1" value="75">
+            </div>
+            <div class="cfg-row">
+              <label>Image width (px)</label>
+              <input type="number" id="imgW" min="160" max="3840" step="10" value="640">
+            </div>
+            <div class="cfg-row">
+              <label>Image height (px)</label>
+              <input type="number" id="imgH" min="120" max="2160" step="10" value="480">
+            </div>
+            <div class="cfg-row">
+              <label>Mirrored (selfie cam)</label>
+              <input type="checkbox" id="mirrored" checked>
+            </div>
+          </div>
+
+          <div class="cfg-section">
+            <div class="cfg-section-title">Screen (physical)</div>
+            <div class="cfg-row">
+              <label>Width (mm)</label>
+              <input type="number" id="screenW" min="20" max="800" step="1" value="150">
+            </div>
+            <div class="cfg-row">
+              <label>Height (mm)</label>
+              <input type="number" id="screenH" min="10" max="600" step="1" value="70">
+            </div>
+            <div class="cfg-row">
+              <label>Viewing distance (mm)</label>
+              <input type="number" id="viewDist" min="100" max="1500" step="10" value="350">
+            </div>
+          </div>
+
+          <div class="cfg-section">
+            <div class="cfg-section-title">Camera position relative to screen center</div>
+            <div class="cfg-row">
+              <label>Offset X (mm, right=+)</label>
+              <input type="number" id="camOffX" min="-200" max="200" step="1" value="0">
+            </div>
+            <div class="cfg-row">
+              <label>Offset Y (mm, up=+)</label>
+              <input type="number" id="camOffY" min="-200" max="200" step="1" value="0">
+            </div>
+          </div>
+
+          <div class="cfg-info" id="focalInfo">
+            Computed focal length: <span id="focalVal">—</span> px
+          </div>
+
+          <button id="applySettings" class="primary-btn">Apply &amp; Save</button>
+        </div>
       </div>
     </div>
 
@@ -48,6 +125,9 @@
         <div class="btn-row">
           <button id="manualModeBtn" class="btn-sm active">Manual</button>
           <button id="cameraModeBtn" class="btn-sm">Camera</button>
+        </div>
+        <div class="btn-row">
+          <button id="openConfigBtn" class="btn-sm">Camera Config</button>
         </div>
         <canvas id="topdownCanvas" width="160" height="100"></canvas>
       </div>
