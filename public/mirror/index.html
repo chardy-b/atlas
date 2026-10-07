@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>3D Portal</title>
-  <script type="module" crossorigin src="/mirror/assets/index-mjMi9b03.js"></script>
-  <link rel="stylesheet" crossorigin href="/mirror/assets/index-DqoQ7vAP.css">
+  <script type="module" crossorigin src="/mirror/assets/index-gtI_1Hf2.js"></script>
+  <link rel="stylesheet" crossorigin href="/mirror/assets/index-DGrGsJmA.css">
 </head>
 <body>
   <div id="app">
@@ -136,8 +136,12 @@
     <!-- Manual controls (drag region = whole canvas with indicator) -->
     <div id="manualHint" class="hidden">Drag to move · Scroll for depth</div>
 
-    <!-- Hidden camera preview -->
-    <video id="cameraPreview" class="hidden" playsinline muted></video>
+    <!-- Camera overlay (PiP with face markers) -->
+    <div id="cameraOverlay" class="hidden">
+      <video id="camFeedVideo" class="cam-feed" playsinline muted></video>
+      <canvas id="camOverlayCanvas" class="cam-overlay"></canvas>
+      <div id="camState" class="cam-state">Camera starting...</div>
+    </div>
 
     <!-- Three.js canvas -->
     <canvas id="portalCanvas"></canvas>
