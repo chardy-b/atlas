@@ -25,26 +25,9 @@ export function AppShell({
           <Link href="/" className="shrink-0 font-semibold tracking-tight">
             {appName}
           </Link>
-          <nav aria-label="Primary navigation" className="min-w-0 flex-1">
-            <ul className="flex items-center gap-1 overflow-x-auto text-sm">
-              <li>
-                <a
-                  className="inline-flex rounded-md px-2.5 py-1.5 text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  href="#board"
-                >
-                  Examples
-                </a>
-              </li>
-              <li>
-                <a
-                  className="inline-flex rounded-md px-2.5 py-1.5 text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  href="/api/health"
-                >
-                  Health
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <span className="flex-1 text-center text-[0.65rem] uppercase tracking-[0.2em] text-muted-foreground max-sm:text-left">
+            Interactive works
+          </span>
           <ThemeToggle />
         </div>
       </header>

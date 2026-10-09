@@ -17,9 +17,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Application template",
-  description:
-    "A neutral starting point for personal tools, dashboards, and prototypes.",
+  title: "Atlas · Interactive works",
+  description: "A home for tactile, browser-native experiences.",
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

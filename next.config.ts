@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/mirror/:path*",
-        headers: securityHeaders.map(h =>
+        headers: securityHeaders.map((h) =>
           h.key === "Permissions-Policy"
             ? { key: "Permissions-Policy", value: "camera=*" }
             : h,

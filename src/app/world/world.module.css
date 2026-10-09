@@ -1,0 +1,368 @@
+.world {
+  --forest-ink: #ecedda;
+  --forest-muted: #a7beb4;
+  --forest-night: #102f2e;
+  --forest-line: #547069;
+  --forest-accent: #d7dda7;
+  min-height: 100svh;
+  background: var(--forest-night);
+  color: var(--forest-ink);
+  padding: 0 3.5%;
+}
+.header {
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--forest-line);
+}
+.header a {
+  color: inherit;
+  text-decoration: none;
+}
+.brand {
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: 0.18em;
+}
+.brand span {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  color: var(--forest-muted);
+}
+.edition,
+.back {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.back:hover {
+  text-decoration: underline;
+}
+.world a:focus-visible,
+.world button:focus-visible,
+.canvas:focus-visible {
+  outline: 2px solid var(--forest-accent);
+  outline-offset: 5px;
+}
+.intro {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 36px 0 0;
+  pointer-events: none;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: var(--forest-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 9px;
+}
+.eyebrow > span,
+.open > span,
+.dot {
+  width: 5px;
+  height: 5px;
+  background: var(--forest-accent);
+  border-radius: 50%;
+  display: inline-block;
+}
+.intro h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(44px, 5.3vw, 78px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+  margin: 13px 0;
+}
+.intro h1 em {
+  color: var(--forest-accent);
+  font-weight: 400;
+}
+.intro > p:last-child {
+  color: var(--forest-muted);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+.experience {
+  position: relative;
+  height: min(740px, 76vw);
+  min-height: 540px;
+  margin-top: -24px;
+}
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+.sceneLabel {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  pointer-events: none;
+}
+.sceneLabel > span:last-child {
+  margin-left: 12px;
+  color: var(--forest-muted);
+}
+.note {
+  position: absolute;
+  left: 0;
+  bottom: 110px;
+  width: 206px;
+  pointer-events: none;
+}
+.noteIndex {
+  color: var(--forest-accent);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+}
+.note h2 {
+  font:
+    italic 30px Georgia,
+    serif;
+  margin: 14px 0;
+}
+.note p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--forest-muted);
+}
+.open {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--forest-accent);
+  font-size: 10px;
+  margin-top: 24px;
+}
+.bottomBar {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.bottomBar > p {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--forest-muted);
+  font-size: 10px;
+}
+.controls {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 6px;
+  background: var(--forest-night);
+  border: 1px solid var(--forest-line);
+  border-radius: 9px;
+}
+.control {
+  background: transparent;
+  color: var(--forest-ink);
+  min-width: 40px;
+  height: 40px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.control:hover {
+  background: var(--forest-line);
+}
+.divider {
+  width: 1px;
+  height: 19px;
+  background: var(--forest-line);
+  margin: 0 4px;
+}
+.footer {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--forest-line);
+  color: var(--forest-muted);
+}
+.footer > span {
+  font-size: 9px;
+  letter-spacing: 0.13em;
+}
+.footer p {
+  font:
+    italic 16px Georgia,
+    serif;
+}
+.fallback {
+  position: absolute;
+  inset: 80px 0 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--forest-night);
+  text-align: center;
+  padding: 24px;
+}
+.fallback h2 {
+  font:
+    30px Georgia,
+    serif;
+}
+.fallback p {
+  max-width: 380px;
+  color: var(--forest-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.fallbackLeaf {
+  font-size: 60px;
+  color: var(--forest-accent);
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@media (max-width: 1000px) {
+  .note {
+    width: 165px;
+    bottom: 95px;
+  }
+  .note h2 {
+    font-size: 25px;
+  }
+  .note p {
+    font-size: 11px;
+  }
+  .edition {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .world {
+    padding: 0 6%;
+  }
+  .header {
+    height: 68px;
+  }
+  .brand {
+    font-size: 18px;
+  }
+  .brand span {
+    font-size: 8px;
+  }
+  .back {
+    font-size: 0;
+    letter-spacing: 0;
+  }
+  .back::after {
+    content: "← Collection";
+    font-size: 10px;
+  }
+  .intro {
+    padding-top: 30px;
+  }
+  .intro h1 {
+    font-size: 46px;
+  }
+  .intro > p:last-child {
+    font-size: 10px;
+  }
+  .eyebrow {
+    font-size: 8px;
+  }
+  .experience {
+    height: 710px;
+    min-height: 0;
+    margin-top: 0;
+  }
+  .canvas {
+    position: absolute;
+    width: calc(100% + 12vw);
+    left: -6vw;
+    height: 495px;
+    top: 0;
+  }
+  .sceneLabel {
+    top: 18px;
+    font-size: 8px;
+  }
+  .sceneLabel > span:last-child {
+    display: none;
+  }
+  .note {
+    left: 0;
+    bottom: 116px;
+    width: 100%;
+  }
+  .note h2 {
+    margin: 7px 0;
+  }
+  .note p {
+    max-width: 320px;
+    margin: 6px 0;
+    font-size: 11px;
+  }
+  .open {
+    margin-top: 10px;
+  }
+  .bottomBar {
+    flex-direction: column-reverse;
+    gap: 10px;
+    bottom: 10px;
+  }
+  .bottomBar > p {
+    font-size: 9px;
+    margin: 0;
+    gap: 6px;
+  }
+  .control {
+    min-width: 44px;
+    height: 44px;
+  }
+  .footer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px 0;
+  }
+  .footer p {
+    width: 100%;
+    order: -1;
+    text-align: center;
+    margin: 0 0 8px;
+  }
+  .footer > span {
+    font-size: 7px;
+  }
+  .fallback {
+    inset: 45px 0 240px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .world *,
+  .world *::after {
+    transition: none !important;
+    scroll-behavior: auto;
+  }
+}
