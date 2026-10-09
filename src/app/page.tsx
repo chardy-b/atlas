@@ -1,54 +1,69 @@
 import { AppShell } from "@/components/app-shell"
 import { AmbientScene } from "@/components/ambient-scene"
+import Link from "next/link"
+
 export default function Home() {
   return (
     <AppShell appName="ATLAS">
       <div className="hero">
         <AmbientScene />
-        <p className="eyebrow">Three.js / field notes</p>
+        <p className="eyebrow">Independent digital works</p>
         <h1>
-          Ways of seeing
+          Two places
           <br />
-          <em>in three dimensions.</em>
+          <em>to step inside.</em>
         </h1>
         <p className="intro">
-          A study wall of experiments, interfaces, and small worlds made with
-          Three.js. Browse the references; follow the instincts behind them.
+          Atlas is a home for tactile, browser-native experiences—each one an
+          invitation to look, move, and linger.
         </p>
-        <div className="flex flex-wrap items-center gap-4">
-          <a href="#board" className="hero-link">
-            Enter the board ↓
-          </a>
-          <a
-            href="/world"
-            className="hero-link"
-            aria-label="Explore The Moss Garden woodland world"
-          >
-            Explore The Moss Garden ↗
-          </a>
-        </div>
       </div>
-      <section id="board" aria-labelledby="projects-title" className="board-section">
-        <div className="board-heading">
-          <div>
-            <p className="eyebrow">Atlas / selected projects</p>
-            <h2 id="projects-title">Small worlds, made tangible.</h2>
-          </div>
-          <p className="board-count">02 projects</p>
+      <section aria-labelledby="projects-title" className="projects-section">
+        <div className="projects-heading">
+          <p className="eyebrow">Projects / 01—02</p>
+          <h2 id="projects-title">Enter an experience.</h2>
         </div>
         <div className="project-grid">
-          <a className="project-card span-wide" href="/mirror/">
+          <Link className="project-card project-mirror" href="/mirror/">
             <span className="project-index">01</span>
-            <span className="project-info"><strong>Mirror</strong><small>Camera / gesture instrument</small></span>
-          </a>
-          <a className="project-card span-tall" href="/world">
+            <span className="project-art" aria-hidden="true">
+              <span className="mirror-orbit mirror-orbit-one" />
+              <span className="mirror-orbit mirror-orbit-two" />
+              <span className="mirror-core" />
+            </span>
+            <span className="project-info">
+              <span>
+                <strong>Mirror</strong>
+                <small>Camera / gesture instrument</small>
+              </span>
+              <span className="project-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </span>
+          </Link>
+          <Link className="project-card project-world" href="/world">
             <span className="project-index">02</span>
-            <span className="project-info"><strong>The Moss Garden</strong><small>Three.js / woodland world</small></span>
-          </a>
+            <span className="project-art" aria-hidden="true">
+              <span className="world-moon" />
+              <span className="world-ground" />
+              <span className="world-stem world-stem-one" />
+              <span className="world-stem world-stem-two" />
+              <span className="world-stem world-stem-three" />
+            </span>
+            <span className="project-info">
+              <span>
+                <strong>World</strong>
+                <small>The Moss Garden / interactive woodland</small>
+              </span>
+              <span className="project-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </span>
+          </Link>
         </div>
       </section>
       <footer className="site-footer">
-        <span>Built for looking closer.</span>
+        <span>Atlas / Two interactive works</span>
         <a href="/api/health">System health ↗</a>
       </footer>
     </AppShell>
